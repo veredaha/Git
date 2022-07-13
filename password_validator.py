@@ -72,10 +72,33 @@ def runcode(passwd) -> sys.exit :
  else:
     print(Fore.RED + "Password is not valid")
     return sys.exit(1)
-
+def runcodetxt(passwd) -> sys.exit:
+ """
+    function checks the password that is given from txt file
+    for example if password is "MYPAssWORD1" it print that the password is valid
+    :param passwd: str example - > "MyP@ssw0rd!1"
+    :return: sys.exit(0),sys.exit(1)
+ """
+ myfile = open(passwd, "rt") 
+ password = myfile.read()        
+ myfile.close()
+ password_lengthcheck(password)
+ password_digitcheck(password)
+ password_uppercheck(password)
+ password_lowercheck(password)
+ if val == 0  and val1 ==0 and val2 == 0 and val3 == 0:
+     print(Fore.GREEN + "Password is valid")
+     return sys.exit(0)
+ else:
+     print(Fore.RED + "Password is not valid")
+     return sys.exit(1)  
 def main():
- passwd = sys.argv[1]
- print(runcode(passwd))
+ option = sys.argv[1]
+ if option == '-f':
+   passwd = sys.argv[2]
+   print(runcodetxt(passwd))
+ else:   
+  print(runcode(option))
  
              
 if __name__ == '__main__':
